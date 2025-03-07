@@ -1,0 +1,13 @@
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+classifiers = {
+    "Random Forest": RandomForestClassifier(n_estimators=10, random_state=42),
+    "SVM": SVC(kernel='linear', C=1.0, random_state=42),
+    "Decision Tree": DecisionTreeClassifier(random_state=42),
+    "XGBoost": XGBClassifier(random_state=42),
+    "Logistic Regression": LogisticRegression(random_state=42)
+}
+for name, clf in classifiers.items():
+    clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"{name} Accuracy: {accuracy:.2f}")
