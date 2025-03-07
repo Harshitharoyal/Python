@@ -1,0 +1,8 @@
+tokenizer = Tokenizer()
+text_train = df_train["ciphertext"].values
+text_test = df_test["ciphertext"].values
+tokenizer.fit_on_texts(list(text_train)+list(text_test))
+print('Tokenizing train...')
+tokenized_text_train = tokenizer.texts_to_sequences(text_train)
+print('Tokenizing test...')
+tokenized_text_test = tokenizer.texts_to_sequences(text_test)
