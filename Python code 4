@@ -1,0 +1,19 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import classification_report, confusion_matrix
+def plot_classification_and_confusion_metrics(classifiers, X_test, y_test):
+    for name, clf in classifiers.items():
+        y_pred = clf.predict(X_test)
+        print(f"Classification Report for {name}:\n")
+        print(classification_report(y_test, y_pred))
+        print(f"Confusion Matrix for {name}:\n")
+        conf_matrix = confusion_matrix(y_test, y_pred)
+        print(conf_matrix)
+        plt.figure(figsize=(8, 6))
+        sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=True, yticklabels=True)
+        plt.xlabel('Predicted')
+        plt.ylabel('True')
+        plt.title(f"Confusion Matrix for {name}")
+        plt.show()
+        print("\n")
+plot_classification_and_confusion_metrics(classifiers, X_test, y_test)
